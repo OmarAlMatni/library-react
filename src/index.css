@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Core neutrals */
+  --color-ink: #0b1220;
+  --color-ink-soft: #33465c;
+  --color-paper: #f5f8fa;
+  --color-card: #ffffff;
+  --color-line: #e7eef3;
+  --color-slate: #64748b;
+
+  /* Brand accent (sidebar active state, logo mark) */
+  --color-teal: #00bfbb;
+  --color-teal-soft: #d9f6f5;
+
+  /* Primary actions / links */
+  --color-blue: #1266c1;
+  --color-blue-soft: #e3f0fc;
+
+  /* Secondary category accent */
+  --color-indigo: #6366f1;
+  --color-indigo-soft: #e7e8fc;
+
+  /* Status: positive / success */
+  --color-forest: #16a34a;
+  --color-forest-soft: #def5e6;
+
+  /* Status: negative / attention */
+  --color-rubric: #ef4444;
+  --color-rubric-soft: #fce4e4;
+
+  /* Status: pending / waiting */
+  --color-brass: #f59e0b;
+  --color-brass-soft: #fdecd1;
+
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Dark mode theme overrides ---- */
+.dark {
+  --color-ink: #e6edf3;
+  --color-ink-soft: #9fb0c3;
+  --color-paper: #0b1220;
+  --color-card: #111a2b;
+  --color-line: #263349;
+  --color-slate: #8a9bb2;
+
+  --color-teal-soft: #0f3a3a;
+  --color-blue-soft: #132c4a;
+  --color-indigo-soft: #262a5c;
+  --color-forest-soft: #14351f;
+  --color-rubric-soft: #3a1c1c;
+  --color-brass-soft: #3a2c10;
+}
+
+::selection {
+  background-color: var(--color-teal-soft);
+  color: var(--color-ink);
+}
+
+/* Status pill: soft-tinted background derived from the status color itself */
+.stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background-color: color-mix(in srgb, currentColor 14%, white);
+  white-space: nowrap;
+}
+
+/* Card row divider */
+.ledger-row {
+  border-bottom: 1px solid var(--color-line);
+}
+.ledger-row:last-child {
+  border-bottom: none;
+}
+
+/* Focus visibility */
+:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Minimal scrollbar tuning */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: 999px;
+}
